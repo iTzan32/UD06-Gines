@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="liga_partido_action" model="ir.actions.act_window">
+        <field name="name">Partidos de la liga</field>
+        <field name="res_model">liga.partido</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Partidos de la liga" id="liga_partido_menu" parent="liga_base_menu" action="liga_partido_action"/>
+
+    <record id="liga_partido_view_list" model="ir.ui.view">
+        <field name="name">Lista de partidos</field>
+        <field name="model">liga.partido</field>
+        <field name="arch" type="xml">
+            <tree>
+                <header>
+                    <button name="sumar_dos_goles_casa" type="object" string="+2 Goles Locales" class="oe_highlight"/>
+                    <button name="sumar_dos_goles_visitante" type="object" string="+2 Goles Visitantes" class="oe_highlight"/>
+                </header>
+                <field name="equipo_casa"/>
+                <field name="goles_casa"/>
+                <field name="equipo_fuera"/>
+                <field name="goles_fuera"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="liga_partido_view_form" model="ir.ui.view">
+        <field name="name">Formulario Partido</field>
+        <field name="model">liga.partido</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="equipo_casa"/>
+                        <field name="goles_casa"/>
+                        <field name="equipo_fuera"/>
+                        <field name="goles_fuera"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="liga_partido_view_graph" model="ir.ui.view">
+        <field name="name">Gráfico de Goles Locales</field>
+        <field name="model">liga.partido</field>
+        <field name="arch" type="xml">
+            <graph string="Estadísticas Goles Casa" type="bar">
+                <field name="equipo_casa"/>
+                <field name="goles_casa" type="measure"/>
+            </graph>
+        </field>
+    </record>
+</odoo>

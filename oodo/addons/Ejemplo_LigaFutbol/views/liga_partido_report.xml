@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_partido" model="ir.actions.report">
+        <field name="name">Resultado del Partido</field>
+        <field name="model">liga.partido</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">Ejemplo_LigaFutbol.report_partido_template</field>
+        <field name="report_file">Ejemplo_LigaFutbol.report_partido_template</field>
+        <field name="binding_model_id" ref="model_liga_partido"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_partido_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page text-center">
+                        <h2>Acta del Partido</h2>
+                        <hr/>
+                        <div class="row" style="font-size: 24px; margin-top: 50px;">
+                            <div class="col-5">
+                                <strong><span t-field="o.equipo_casa.nombre"/></strong>
+                            </div>
+                            <div class="col-2">
+                                <span t-field="o.goles_casa"/> - <span t-field="o.goles_fuera"/>
+                            </div>
+                            <div class="col-5">
+                                <strong><span t-field="o.equipo_fuera.nombre"/></strong>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
